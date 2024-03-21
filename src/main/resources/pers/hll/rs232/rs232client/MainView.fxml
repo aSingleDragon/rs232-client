@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane minHeight="460.0" minWidth="750.0" prefHeight="460.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <Tab text="电子秤连接">
+        <fx:include source="RS232ManageView.fxml"/>
+    </Tab>
+</TabPane>
