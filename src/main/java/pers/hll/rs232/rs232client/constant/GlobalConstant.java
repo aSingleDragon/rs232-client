@@ -5,7 +5,6 @@ package pers.hll.rs232.rs232client.constant;
  *
  * @author hll
  * @since 2023/10/25
- * @version 1.0.0
  */
 public interface GlobalConstant {
 

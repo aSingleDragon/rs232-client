@@ -1,8 +1,5 @@
 package pers.hll.rs232.rs232client.controller;
 
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.io.FileUtil;
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,8 +10,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import lombok.extern.slf4j.Slf4j;
-import pers.hll.rs232.rs232client.manager.SerialPortManager;
 import pers.hll.rs232.rs232client.constant.ConnectionStateEnum;
+import pers.hll.rs232.rs232client.manager.SerialPortManager;
 import pers.hll.rs232.rs232client.parser.impl.ElectronicScaleParser;
 import pers.hll.rs232.rs232client.processor.impl.ElectronicScaleProcessor;
 import pers.hll.rs232.rs232client.utils.ViewUtils;
@@ -23,8 +20,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -190,20 +187,23 @@ public class RS232ManageController implements Initializable {
     private void setLogButtonOnActionEventHandler() {
         logButton.setOnAction(event -> {
             String logFilePath = System.getProperty("user.dir") + "/logs";
-            List<File> logFiles = FileUtil.loopFiles(logFilePath);
-            if (CollUtil.isEmpty(logFiles)) {
-                ViewUtils.alertError("未找到日志文件");
-                return;
+            File logFolder = new File(logFilePath);
+            if (logFolder.isDirectory()) {
+                File[] logFiles = logFolder.listFiles();
+                if (logFiles != null && logFiles.length > 0) {
+                    File recentlyModifiedFile = Arrays
+                            .stream(logFiles)
+                            .max(Comparator.comparing(File::lastModified))
+                            .orElse(null);
+                    try {
+                        Desktop.getDesktop().open(recentlyModifiedFile);
+                    } catch (IOException e) {
+                        log.error("日志文件打开失败:{}", recentlyModifiedFile.getAbsolutePath(), e);
+                        ViewUtils.alertError("日志文件打开失败!");
+                    }
+                }
             }
-            File recentlyModifiedFile = logFiles
-                    .stream()
-                    .max(Comparator.comparing(File::lastModified))
-                    .orElse(null);
-            try {
-                Desktop.getDesktop().open(recentlyModifiedFile);
-            } catch (IOException e) {
-                log.error("日志文件打开失败:{}", FileUtil.file(logFilePath).getAbsolutePath(), e);
-            }
+            ViewUtils.alertError("未找到日志文件!");
         });
     }
 

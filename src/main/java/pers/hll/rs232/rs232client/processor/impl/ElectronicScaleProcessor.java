@@ -1,11 +1,11 @@
 package pers.hll.rs232.rs232client.processor.impl;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
 import javafx.scene.control.TextArea;
 import lombok.extern.slf4j.Slf4j;
 import pers.hll.rs232.rs232client.exception.UnSupportedKeyException;
 import pers.hll.rs232.rs232client.parser.result.ElectronicScaleData;
 import pers.hll.rs232.rs232client.processor.Processor;
+import pers.hll.rs232.rs232client.utils.LocalDateTimeUtil;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
