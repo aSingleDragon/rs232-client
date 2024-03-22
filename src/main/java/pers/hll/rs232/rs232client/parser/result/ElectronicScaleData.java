@@ -1,10 +1,10 @@
 package pers.hll.rs232.rs232client.parser.result;
 
-import cn.hutool.core.util.StrUtil;
 import lombok.Builder;
 import lombok.Data;
 import pers.hll.rs232.rs232client.parser.result.enums.electronic.scale.UnitInWeightModeEnum;
 import pers.hll.rs232.rs232client.parser.result.enums.electronic.scale.WorkMode;
+import pers.hll.rs232.rs232client.utils.StringUtil;
 
 import java.math.BigDecimal;
 
@@ -91,8 +91,8 @@ public class ElectronicScaleData {
         String warningInfo = "";
         if (isOverFlow || !isStable) {
             warningInfo = "警告: " +
-                    (isOverFlow ? "重量溢出" : StrUtil.EMPTY) +
-                    (!isStable ? "重量不稳定" : StrUtil.EMPTY);
+                    (isOverFlow ? "重量溢出" : StringUtil.EMPTY) +
+                    (!isStable ? "重量不稳定" : StringUtil.EMPTY);
         }
         return weight + " " + unit + " " + warningInfo;
     }
