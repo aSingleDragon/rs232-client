@@ -8,6 +8,7 @@ module pers.hll.rs.rs232client {
 
     exports pers.hll.rs232.rs232client.parser;
     exports pers.hll.rs232.rs232client.processor;
+    exports pers.hll.rs232.rs232client.exception;
 
     exports pers.hll.rs232.rs232client;
     opens pers.hll.rs232.rs232client to javafx.fxml;
