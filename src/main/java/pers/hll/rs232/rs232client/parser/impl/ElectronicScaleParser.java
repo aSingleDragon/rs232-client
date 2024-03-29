@@ -1,7 +1,5 @@
 package pers.hll.rs232.rs232client.parser.impl;
 
-
-
 import pers.hll.rs232.rs232client.exception.ParseException;
 import pers.hll.rs232.rs232client.parser.ParseConstant;
 import pers.hll.rs232.rs232client.parser.Parser;
@@ -14,7 +12,7 @@ import java.math.RoundingMode;
 
 /**
  * 电子秤串口(RS232)数据帧解析器
- * <p>数据帧格式请参考 ./images/电子天平-说明书.pdf
+ * <p>数据帧格式请参考 ./docs/电子秤-说明书.pdf
  *
  * @author hll
  * @since 2023/12/06
@@ -85,7 +83,7 @@ public class ElectronicScaleParser implements Parser<ElectronicScaleData> {
      * @param num 数
      * @return 值
      */
-    private static int bcd(byte num) {
+    private int bcd(byte num) {
         return ((num >> 4) & 0x0F) * 10 + (num & 0x0F);
     }
 
@@ -95,7 +93,7 @@ public class ElectronicScaleParser implements Parser<ElectronicScaleData> {
      * @param bcdBytes 不定数量的bcd值
      * @return 和
      */
-    private static int bcd(byte... bcdBytes) {
+    private int bcd(byte... bcdBytes) {
         int result = 0;
         int carry = 1;
         for (byte num : bcdBytes) {
@@ -110,7 +108,7 @@ public class ElectronicScaleParser implements Parser<ElectronicScaleData> {
      *
      * @param data 数据帧
      */
-    private static void check(byte[] data) {
+    private void check(byte[] data) {
         // 每次发送数据帧长度为6
         if (data.length != 6) {
             throw new IllegalArgumentException(String.format("数据帧长度为:%s, 不合法(正常应为6)", data.length));

@@ -14,7 +14,7 @@ import pers.hll.rs232.rs232client.constant.ConnectionStateEnum;
 import pers.hll.rs232.rs232client.manager.SerialPortManager;
 import pers.hll.rs232.rs232client.parser.impl.ElectronicScaleParser;
 import pers.hll.rs232.rs232client.processor.impl.ElectronicScaleProcessor;
-import pers.hll.rs232.rs232client.utils.ViewUtils;
+import pers.hll.rs232.rs232client.utils.ViewUtil;
 
 import java.awt.*;
 import java.io.File;
@@ -128,7 +128,7 @@ public class RS232ManageController implements Initializable {
             String character = event.getCharacter();
             // 如果不是数值或删除 则消耗这个事件
             if (!(character.matches("\\d") || character.isEmpty())) {
-                ViewUtils.alertError("只能输入数字(0-9)!");
+                ViewUtil.alertError("只能输入数字(0-9)!");
                 event.consume();
             }
         });
@@ -199,11 +199,11 @@ public class RS232ManageController implements Initializable {
                         Desktop.getDesktop().open(recentlyModifiedFile);
                     } catch (IOException e) {
                         log.error("日志文件打开失败:{}", recentlyModifiedFile.getAbsolutePath(), e);
-                        ViewUtils.alertError("日志文件打开失败!");
+                        ViewUtil.alertError("日志文件打开失败!");
                     }
                 }
             }
-            ViewUtils.alertError("未找到日志文件!");
+            ViewUtil.alertError("未找到日志文件!");
         });
     }
 

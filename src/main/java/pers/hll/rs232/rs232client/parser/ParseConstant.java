@@ -6,15 +6,18 @@ package pers.hll.rs232.rs232client.parser;
  * @author hll
  * @since 2023/12/06
  */
-public interface ParseConstant {
+public final class ParseConstant {
+
+    private ParseConstant() {
+    }
 
     /**
      * 真
      */
-    int TRUE = 1;
+    public static final int TRUE = 1;
 
     /**
      * 假
      */
-    int FALSE = 0;
+    public static final int FALSE = 0;
 }
