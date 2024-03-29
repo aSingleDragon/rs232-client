@@ -18,7 +18,7 @@ import java.util.Locale;
 @UtilityClass
 public class LocalDateTimeUtil {
 
-    public static final String NORM_DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public final String NORM_DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     public String formatNormal(LocalDateTime time) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(NORM_DATETIME_PATTERN, Locale.getDefault())

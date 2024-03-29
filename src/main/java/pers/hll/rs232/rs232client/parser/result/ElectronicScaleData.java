@@ -72,22 +72,13 @@ public class ElectronicScaleData {
      * @return 简单描述
      */
     public String toSimpleDescription() {
-        String unit;
-        switch (workMode) {
-            case WEIGHT:
-                unit = unitInWeightMode == UnitInWeightModeEnum.KILOGRAM
-                        ? UnitInWeightModeEnum.KILOGRAM.getDescription()
-                        : UnitInWeightModeEnum.POUND.getDescription();
-                break;
-            case COUNTING:
-                unit = "个";
-                break;
-            case PERCENTAGE:
-                unit = "%";
-                break;
-            default:
-                unit = "";
-        }
+        String unit = switch (workMode) {
+            case WEIGHT -> unitInWeightMode == UnitInWeightModeEnum.KILOGRAM
+                    ? UnitInWeightModeEnum.KILOGRAM.getDescription()
+                    : UnitInWeightModeEnum.POUND.getDescription();
+            case COUNTING -> "个";
+            case PERCENTAGE -> "%";
+        };
         String warningInfo = "";
         if (isOverFlow || !isStable) {
             warningInfo = "警告: " +
