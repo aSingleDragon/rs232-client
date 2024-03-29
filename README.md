@@ -1,10 +1,10 @@
-# rs232-client
+# RS232-client
 
 ## 介绍
 基于Java 17和Java FX技术搭建的RS232串口通信客户端，已经实现了电子秤的数据通信、数据解析及数据输出。
 
 ## 技术架构
-JDK 17 + Java FX + 
+JDK 17 + Java FX + JPMS
 
 ## 依赖
 1. JDK: graalvm-jdk-17.0.10
@@ -34,10 +34,10 @@ jpackage \
   --dest out \
   --runtime-image ./target/app/ 
 ```
-构建完成的[RS232Client-1.0.0.dmg](./out/)文件, 双击安装, 在弹出啦的页面里, 将RS232Client.app拖至Applications目录下即可.
+构建完成的[RS232Client-1.0.0.dmg](./out/)文件, 双击安装, 在弹出页面里将RS232Client.app拖至Applications目录下即可.
 
 
 #### 参与贡献
-1.  Fork / Star 本仓库
+1. Fork / Star 本仓库
 2. 提交代码 (注释/bug修复/新功能/优化)
 3. 提交 Issue.
