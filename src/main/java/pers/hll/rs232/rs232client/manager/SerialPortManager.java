@@ -102,7 +102,7 @@ public class SerialPortManager {
      * @return 读取到的数据
      */
     public static byte[] readFromPort(SerialPort serialPort) {
-        byte[] reslutData = null;
+        byte[] resultData = null;
         try {
             if (!serialPort.isOpen()) {
                 return new byte[0];
@@ -114,13 +114,13 @@ public class SerialPortManager {
             byte[] readBuffer = new byte[serialPort.bytesAvailable()];
             int numRead = serialPort.readBytes(readBuffer, readBuffer.length);
             if (numRead > 0) {
-                reslutData = readBuffer;
+                resultData = readBuffer;
             }
         } catch (InterruptedException e) {
             log.error("InterruptedException: ", e);
             Thread.currentThread().interrupt();
         }
-        return reslutData;
+        return resultData;
     }
 
     /**
